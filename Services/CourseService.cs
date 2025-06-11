@@ -20,7 +20,7 @@ namespace Services
             _dataContext = dataContext;
         }
 
-        public async Task<Guid> AddToCourseNewStudentAsync(Guid courseId, StudentDto studentDto)
+        public async Task<Guid> AddToCourseNewStudentAsync(Guid courseId, StudentDtoForCreate studentDto)
         {
             Course course = await _dataContext.Courses
                 .FirstOrDefaultAsync(x => x.Id == courseId)
@@ -38,7 +38,7 @@ namespace Services
             return student.Id;
         }
 
-        public async Task<Guid> CreateCourseAsync(CourseDto courseDto)
+        public async Task<Guid> CreateCourseAsync(CourseDtoForCreate courseDto)
         {
             Course course = new Course
             {
@@ -63,7 +63,7 @@ namespace Services
         {
             List<CourseDto> courses = await _dataContext.Courses
                 .Include(x => x.Students)
-                .Select(x => new CourseDto(x.Name, x.Students.Select(s => new StudentDto(s.FullName)).ToList()))
+                .Select(x => new CourseDto(x.Id, x.Name, x.Students.Select(s => new StudentDto(s.Id, s.FullName)).ToList()))
                 .ToListAsync();
 
             return courses;

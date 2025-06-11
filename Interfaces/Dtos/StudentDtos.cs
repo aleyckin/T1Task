@@ -6,5 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.Dtos
 {
-    public record StudentDto(string FullName) { }
+    public record StudentDto(Guid Id, string FullName) { }
+
+    public record StudentDtoForCreate(string FullName) { }
 }

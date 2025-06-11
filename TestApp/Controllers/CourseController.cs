@@ -22,13 +22,13 @@ namespace TestApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> CreateCourses([FromBody] CourseDto courseDto)
+        public async Task<ActionResult<Guid>> CreateCourses([FromBody] CourseDtoForCreate courseDto)
         {
             return await _courseService.CreateCourseAsync(courseDto);
         }
 
         [HttpPost("/{courseId:guid}/students")]
-        public async Task<ActionResult<Guid>> AddToCourseNewStudent([FromRoute] Guid courseId, [FromBody] StudentDto studentDto)
+        public async Task<ActionResult<Guid>> AddToCourseNewStudent([FromRoute] Guid courseId, [FromBody] StudentDtoForCreate studentDto)
         {
             return await _courseService.AddToCourseNewStudentAsync(courseId, studentDto);
         }
