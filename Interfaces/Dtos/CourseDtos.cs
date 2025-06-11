@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Contracts.Dtos
 {
-    public record CourseDtos(string Name, List<Student> Students) { }
+    public record CourseDto(string Name, List<StudentDto> Students) { }
 }

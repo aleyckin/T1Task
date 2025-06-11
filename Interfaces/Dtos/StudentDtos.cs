@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace Contracts.Dtos
 {
-    internal class StudentDtos
-    {
-    }
+    public record StudentDto(string FullName) { }
 }

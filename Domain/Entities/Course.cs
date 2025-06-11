@@ -9,6 +9,6 @@ namespace Domain.Entities
     public class Course : IId
     {
         public string Name { get; set; } = string.Empty;
-        List<Student> Students { get; set; } = new List<Student>();
+        public List<Student> Students { get; set; } = new List<Student>();
     }
 }
