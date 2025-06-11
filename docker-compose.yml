@@ -1,0 +1,24 @@
+services:
+  backend:
+    image: ${DOCKER_REGISTRY-}backend
+    build:
+      context: .
+      dockerfile: TestApp/Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - t1_db
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+  t1_db:
+    image: postgres:latest
+    container_name: t1_db
+    environment: 
+        - POSTGRES_DB=t1_db
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+    volumes:
+        - ./.containers/t1-db:/var/lib/postgresql/data
+    ports:
+        - 5432:5432
